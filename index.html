@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider State Saver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .slider-container {
+            margin-bottom: 20px;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Slider State Saver</h1>
+
+    <div class="slider-container">
+        <label for="spoons">Spoons (Low to High):</label>
+        <input type="range" id="spoons" min="0" max="100" value="50">
+    </div>
+
+    <div class="slider-container">
+        <label for="emotionIntensity">Emotion Intensity (Neutral to High):</label>
+        <input type="range" id="emotionIntensity" min="0" max="100" value="50">
+    </div>
+
+    <div class="slider-container">
+        <label for="emotionFeel">Emotion Feel (Negative to Positive):</label>
+        <input type="range" id="emotionFeel" min="0" max="100" value="50">
+    </div>
+
+    <div class="slider-container">
+        <label for="loveyDovey">Lovey Dovey (Left is Full Bat):</label>
+        <input type="range" id="loveyDovey" min="0" max="100" value="50">
+    </div>
+
+    <div class="slider-container">
+        <label for="missYou">Miss You (Left is Full Bat):</label>
+        <input type="range" id="missYou" min="0" max="100" value="50">
+    </div>
+
+    <div class="slider-container">
+        <label for="zoomTime">Zoom Time (Left is Leave Me Alone):</label>
+        <input type="range" id="zoomTime" min="0" max="100" value="50">
+    </div>
+
+    <button id="saveButton">Save States</button>
+
+    <div class="slider-container">
+        <label for="output">Saved States:</label>
+        <textarea id="output" rows="4" cols="50" readonly></textarea>
+    </div>
+
+    <script>
+        document.getElementById('saveButton').addEventListener('click', function () {
+            const spoons = document.getElementById('spoons').value;
+            const emotionIntensity = document.getElementById('emotionIntensity').value;
+            const emotionFeel = document.getElementById('emotionFeel').value;
+            const loveyDovey = document.getElementById('loveyDovey').value;
+            const missYou = document.getElementById('missYou').value;
+            const zoomTime = document.getElementById('zoomTime').value;
+
+            const output = `Spoons: ${spoons}\nEmotion Intensity: ${emotionIntensity}\nEmotion Feel: ${emotionFeel}\nLovey Dovey: ${loveyDovey}\nMiss You: ${missYou}\nZoom Time: ${zoomTime}`;
+            
+            const outputBox = document.getElementById('output');
+            outputBox.value = output;
+            
+            navigator.clipboard.writeText(output)
+                .then(() => alert('States copied to clipboard!'))
+                .catch(err => alert('Failed to copy to clipboard: ' + err));
+        });
+    </script>
+</body>
+</html>
